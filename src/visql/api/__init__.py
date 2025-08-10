@@ -1,4 +1,4 @@
-from visql.api.core import VisQL
+from .core import VisQL
 
 __all__ = [
     "VisQL",

@@ -1,0 +1,1 @@
+PYTHONPATH=../ poetry run python ../backend/app.py # copy this command and run it at src/visql

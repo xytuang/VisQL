@@ -38,4 +38,4 @@ venv
 tests/__pycache__
 
 src/visql/__pycache__
-
+src/visql/dist

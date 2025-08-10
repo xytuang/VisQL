@@ -1,0 +1,41 @@
+# Dependencies
+src/frontend/node_modules
+
+# Build artifacts
+src/frontend/build
+src/frontend/dist
+
+# Local environment variables
+src/frontend/.env.local
+src/frontend/.env.development.local
+src/frontend/.env.test.local
+src/frontend/.env.production.local
+
+# Log files
+src/frontend/npm-debug.log*
+src/frontend/yarn-debug.log*
+src/frontend/yarn-error.log*
+
+# Testing
+src/frontend//coverage
+
+# Operating System and IDE specific files
+.DS_Store
+.vscode/
+.idea/
+
+# TypeScript build info (if applicable)
+src/frontend/.tsbuildinfo
+
+# Cache files
+src/frontend/.cache/
+
+
+venv
+.pytest_cache
+
+
+tests/__pycache__
+
+src/visql/__pycache__
+

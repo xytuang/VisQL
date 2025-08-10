@@ -8,7 +8,7 @@ import { WidgetDataType } from '../interfaces';
 
 import * as styles from './styles.module.scss';
 
-export function BaseStaticWidget({ config, onEditorChange }: { config: WidgetDataType, onEditorChange?: (value: string) => void }) {
+export function BaseStaticWidget({ config, onEditorChange, jsonSpec }: { config: WidgetDataType, onEditorChange?: (value: string) => void, jsonSpec: Record<string, any> }) {
   const Wrapper = config.provider ?? React.Fragment;
   return (
     <div className={styles.staticWidget} style={{ minHeight: config.staticMinHeight }}>
@@ -19,7 +19,7 @@ export function BaseStaticWidget({ config, onEditorChange }: { config: WidgetDat
           footer={config.footer && <config.footer />}
           disableContentPaddings={config.disableContentPaddings}
         >
-          <config.content onEditorChange={onEditorChange}/>
+          <config.content onEditorChange={onEditorChange} jsonSpec={jsonSpec}/>
         </Container>
       </Wrapper>
     </div>

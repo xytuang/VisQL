@@ -18,6 +18,7 @@ export default function App() {
   const [toolsOpen, setToolsOpen] = useState(false);
   const [toolsContent, setToolsContent] = useState<React.ReactNode>(() => <DashboardMainInfo />);
   const [editorValue, setEditorValue] = useState('');
+  const [jsonSpec, setJsonSpec] = useState<Record<string, any>>({})
   const appLayout = useRef<AppLayoutProps.Ref>(null);
 
   const handleToolsContentChange = (content: React.ReactNode) => {
@@ -30,14 +31,25 @@ export default function App() {
     setEditorValue(newEditorValue);
   }
 
+  const runVisQL = async () => {
+    const response = await fetch('http://localhost:4000/api/run-python', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: editorValue })
+    });
+    const newJsonSpec = await response.json();
+
+    setJsonSpec(newJsonSpec['output'])
+  }
+
   return (
     <HelpPanelProvider value={handleToolsContentChange}>
       <CustomAppLayout
         ref={appLayout}
         content={
           <SpaceBetween size="m">
-            <DashboardHeader actions={<Button variant="primary">Run code</Button>} />
-            <Content onEditorChange={handleEditorChange} />
+            <DashboardHeader actions={<Button variant="primary" onClick={runVisQL}>Run code</Button>} />
+            <Content onEditorChange={handleEditorChange} jsonSpec={jsonSpec}/>
           </SpaceBetween>
         }
         breadcrumbs={<Breadcrumbs items={[{ text: 'Dashboard', href: '#/' }]} />}

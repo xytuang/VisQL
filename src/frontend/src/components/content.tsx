@@ -10,7 +10,7 @@ import {
   diagram,
 } from '../widgets';
 
-export function Content({onEditorChange}: {onEditorChange: (value: string) => void }) {
+export function Content({onEditorChange, jsonSpec}: {onEditorChange: (value: string) => void , jsonSpec: Record<string, any>}) {
   return (
     <Grid
       gridDefinition={[
@@ -19,7 +19,7 @@ export function Content({onEditorChange}: {onEditorChange: (value: string) => vo
       ]}
     >
       <BaseStaticWidget key={0} config={editor.data} onEditorChange={onEditorChange}/>
-      <BaseStaticWidget key={1} config={diagram.data} />
+      <BaseStaticWidget key={1} config={diagram.data} jsonSpec={jsonSpec}/>
     </Grid>
   );
 }
